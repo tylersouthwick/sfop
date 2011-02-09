@@ -1,0 +1,19 @@
+apply plugin: 'scala'
+
+scalaVersion = '2.8.1'
+springVersion = '3.0.5.RELEASE'
+
+repositories {
+	mavenCentral()
+	mavenRepo urls: 'http://scala-tools.org/repo-releases/'
+}
+
+dependencies {
+	scalaTools "org.scala-lang:scala-compiler:${scalaVersion}"
+	scalaTools "org.scala-lang:scala-library:${scalaVersion}"
+
+	compile "org.scala-lang:scala-library:${scalaVersion}"
+	compile "log4j:log4j:1.2.14"
+	compile "org.apache.xmlgraphics:fop:0.95"
+}
+
