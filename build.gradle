@@ -1,5 +1,7 @@
 apply plugin: 'scala'
 
+version = "1.0-SNAPSHOT"
+
 scalaVersion = '2.8.1'
 springVersion = '3.0.5.RELEASE'
 
