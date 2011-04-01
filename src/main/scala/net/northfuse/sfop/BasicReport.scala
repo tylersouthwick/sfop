@@ -1,4 +1,4 @@
-package org.northfuse.sfop
+package net.northfuse.sfop
 
 import scala.xml.Elem
 

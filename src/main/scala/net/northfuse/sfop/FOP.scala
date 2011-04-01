@@ -1,4 +1,4 @@
-package org.northfuse.sfop
+package net.northfuse.sfop
 
 import org.apache.fop.apps._
 import javax.xml.transform.stream.StreamSource
