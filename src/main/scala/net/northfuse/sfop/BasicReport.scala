@@ -2,7 +2,7 @@ package net.northfuse.sfop
 
 import scala.xml.Elem
 
-trait BasicReport extends FOP {
+trait BasicReport extends FOPRenderer {
 
 	val simplePageMasterName = "simple"
 

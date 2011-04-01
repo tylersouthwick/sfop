@@ -9,12 +9,12 @@ import java.io._
 import org.apache.fop.apps.MimeConstants
 import MimeConstants._
 
-object FOP {
+object FOPRenderer {
 	val fopFactory = FopFactory.newInstance
 	val transferFactory = TransformerFactory.newInstance
 }
 
-trait FOP {
+trait FOPRenderer {
 	val foNamespace = "http://www.w3.org/1999/XSL/Format"
 
 	/**
@@ -32,7 +32,7 @@ trait FOP {
 	 * Generate a PDF to an output stream
 	 * @param os OutputStream
 	 */
-	def generate(os: OutputStream) = {
+	def render(os: OutputStream) = {
 		val fop = fopFactory.newFop(MIME_PDF, os)
 		val transformer = transferFactory.newTransformer
 		val result = new SAXResult(fop.getDefaultHandler())
