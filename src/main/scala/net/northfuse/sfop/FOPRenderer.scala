@@ -27,7 +27,7 @@ trait FOPRenderer {
         //TODO find a more efficient way to convert an Elem to a Source
 	implicit def toStreamSource(x: Elem): Source = new StreamSource(new StringReader(x.toString))
 
-	import FOP._
+	import FOPRenderer._
 	/**
 	 * Generate a PDF to an output stream
 	 * @param os OutputStream
