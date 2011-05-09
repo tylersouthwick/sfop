@@ -1,12 +1,25 @@
 apply plugin: 'scala'
+apply plugin: 'maven'
+apply plugin: com.smokejumperit.gradle.ExecPlugin
+apply plugin: com.smokejumperit.gradle.OneJarPlugin
 
 version = "1.0-SNAPSHOT"
 
 scalaVersion = '2.8.1'
 
+buildscript {
+	repositories {
+		mavenCentral()
+		mavenRepo urls: ['http://scala-tools.org/repo-releases/', 'http://repo.smokejumperit.com']
+	}
+	dependencies {
+		classpath 'com.smokejumperit:gradle-plugins:0.7.2'
+	}
+}
+
 repositories {
 	mavenCentral()
-	mavenRepo urls: 'http://scala-tools.org/repo-releases/'
+	mavenRepo urls: ['http://scala-tools.org/repo-releases/', "file://${System.properties['user.home']}/.m2/repository"]
 }
 
 dependencies {
@@ -14,5 +27,15 @@ dependencies {
 	scalaTools "org.scala-lang:scala-library:${scalaVersion}"
 
 	compile "org.scala-lang:scala-library:${scalaVersion}"
+	compile "net.northfuse:sfop:1.0-SNAPSHOT"
 }
 
+jar {
+	manifest {
+		attributes 'Main-Class': 'net.northfuse.sfop.examples.Main'
+	}
+}
+
+task(run) << {
+	execIn(new File(buildDirName), "/usr/bin/java", "-jar", "libs/hello_world-standalone.jar")
+}
