@@ -12,22 +12,25 @@ import MimeConstants._
 object FOPRenderer {
 	val fopFactory = FopFactory.newInstance
 	val transferFactory = TransformerFactory.newInstance
+	val LOG = org.apache.log4j.Logger.getLogger(classOf[FOPRenderer])
 }
 
 trait FOPRenderer {
-	val foNamespace = "http://www.w3.org/1999/XSL/Format"
+	import FOPRenderer._
 
 	/**
 	 * Build an XML tree
 	 *
 	 * @return An Elem containing an FOP tree
 	 */
-	def buildXML: Elem
+	protected def buildXML: Elem
 
         //TODO find a more efficient way to convert an Elem to a Source
-	implicit def toStreamSource(x: Elem): Source = new StreamSource(new StringReader(x.toString))
+	implicit def toStreamSource(x: Elem): Source = {
+		println(x.toString)
+		new StreamSource(new StringReader(x.toString))
+	}
 
-	import FOPRenderer._
 	/**
 	 * Generate a PDF to an output stream
 	 * @param os OutputStream
