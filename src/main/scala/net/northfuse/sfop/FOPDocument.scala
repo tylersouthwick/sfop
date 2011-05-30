@@ -15,6 +15,8 @@ object FOPDocument {
 }
 
 import scala.xml.Node
+import scala.collection.JavaConversions._
+
 trait FOPDocument extends FOPRenderer {
 	import FOPDocument._
 
@@ -23,7 +25,14 @@ trait FOPDocument extends FOPRenderer {
 		{pageSequence}
 	</root>
 
-	def layoutMasterSet : Seq[Node]
-	def pageSequence : Seq[Node]
+	final def layoutMasterSet = contents.map(_.layoutMaster)
+	final def pageSequence = contents.map(_.pageSequence)
+
+	private val contents = new java.util.LinkedList[Content]
+	val content = new {
+		def +=(content : Content) {
+			contents.add(content)
+		}
+	}
 }
 
