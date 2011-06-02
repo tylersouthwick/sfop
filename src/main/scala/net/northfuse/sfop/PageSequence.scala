@@ -7,10 +7,10 @@ object PageSequence {
 	}
 }
 
-trait PageSequence {
+trait PageSequence extends Renderable[String] {
 	val body : Elem
 
-	final def renderAsElem(name : String) {
+	final def renderAsElem(name : String) = {
 		<page-sequence master-reference={name}>
 			{body}
 		</page-sequence>

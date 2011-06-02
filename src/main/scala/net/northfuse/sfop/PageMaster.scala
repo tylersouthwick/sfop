@@ -6,7 +6,7 @@ trait LayoutMaster {
 	def renderAsElem(name : String) : Elem
 }
 
-trait SimplePageMaster extends LayoutMaster {
+trait SimplePageMaster extends LayoutMaster with Renderable[String] {
 	val pageHeight : String
 	val pageWidth : String
 	val margin : String
