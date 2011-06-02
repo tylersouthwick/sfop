@@ -2,11 +2,9 @@ package net.northfuse.sfop
 
 import scala.xml.Elem
 
-trait LayoutMaster {
-	def renderAsElem(name : String) : Elem
-}
+trait LayoutMaster extends Renderable[String]
 
-trait SimplePageMaster extends LayoutMaster with Renderable[String] {
+trait SimplePageMaster extends LayoutMaster {
 	val pageHeight : String
 	val pageWidth : String
 	val margin : String
