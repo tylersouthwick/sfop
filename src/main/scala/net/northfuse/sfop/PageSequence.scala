@@ -1,18 +1,11 @@
 package net.northfuse.sfop
 import scala.xml.Elem
 
-object PageSequence {
-	def apply(builder : => Elem) = new PageSequence {
-		val body = builder
-	}
-}
-
-trait PageSequence extends Renderable[String] {
-	val body : Elem
+trait PageSequence extends Renderable[String] with ContentHolder[Flow] {
 
 	final def renderAsElem(name : String) = {
 		<page-sequence master-reference={name}>
-			{body}
+			{renderContents}
 		</page-sequence>
 	}
 }

@@ -32,7 +32,6 @@ trait FOPDocument extends FOPRenderer {
 
 	val content = new {
 		def +=(content : Content) {
-			println("adding content:" + content.pageSequence)
 			contents.add(content)
 		}
 	}
