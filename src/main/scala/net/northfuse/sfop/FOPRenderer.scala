@@ -6,8 +6,6 @@ import javax.xml.transform._
 import javax.xml.transform.sax._
 import scala.xml.Elem
 import java.io._
-import org.apache.fop.apps.MimeConstants
-import MimeConstants._
 
 object FOPRenderer {
 	val fopFactory = FopFactory.newInstance
@@ -16,7 +14,12 @@ object FOPRenderer {
 }
 
 trait FOPRenderer {
-	import FOPRenderer._
+	import FOPRenderer.{LOG, transferFactory}
+
+	/**
+	 * override this with a custom factory if wanted
+	 */
+	val fopFactory = FOPRenderer.fopFactory
 
 	/**
 	 * Build an XML tree
@@ -27,20 +30,34 @@ trait FOPRenderer {
 
         //TODO find a more efficient way to convert an Elem to a Source
 	implicit def toStreamSource(x: Elem): Source = {
-		println(x.toString)
-		new StreamSource(new StringReader(x.toString))
+		if (LOG.isDebugEnabled) {
+			val file = File.createTempFile("sfop", ".fo.xml")
+			val out = new FileOutputStream(file)
+			out.write(x.toString().getBytes)
+			out.close()
+			LOG.debug("SFOP output: " + file.getAbsolutePath)
+		}
+		new StreamSource(new StringReader(x.toString()))
 	}
 
 	/**
 	 * Generate a PDF to an output stream
 	 * @param os OutputStream
 	 */
-	def render(os: OutputStream) = {
-		val fop = fopFactory.newFop(MIME_PDF, os)
+	final def render(os: OutputStream) {
+		renderPDF(os)
+	}
+
+	final def renderPDF(os: OutputStream) {
+		render("application/pdf", os)
+	}
+
+	final def render(outputType : String, os: OutputStream) {
+		val fop = fopFactory.newFop(outputType, os)
 		val transformer = transferFactory.newTransformer
-		val result = new SAXResult(fop.getDefaultHandler())
+		val result = new SAXResult(fop.getDefaultHandler)
 		transformer.transform(buildXML, result)
-		os.close
+		os.close()
 	}
 
 }

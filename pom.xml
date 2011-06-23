@@ -124,6 +124,6 @@
 	<properties>
 		<scala.version>2.9.0</scala.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<fop.version>0.95</fop.version>
+		<fop.version>1.0</fop.version>
 	</properties>
 </project>
