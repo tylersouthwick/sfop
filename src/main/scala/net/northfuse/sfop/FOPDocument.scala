@@ -25,15 +25,19 @@ trait FOPDocument extends FOPRenderer {
 		{pageSequence}
 	</root>
 
+/*
 	private val contents = new java.util.LinkedList[Content]
+	*/
 
-	final def layoutMasterSet = contents.map(_.layoutMaster)
-	final def pageSequence = contents.map(_.pageSequence)
+	def layoutMasterSet : Seq[Node]
+	def pageSequence : Seq[Node]
 
+/*
 	val content = new {
 		def +=(content : Content) {
 			contents.add(content)
 		}
 	}
+	*/
 }
 
