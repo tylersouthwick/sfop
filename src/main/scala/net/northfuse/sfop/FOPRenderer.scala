@@ -30,14 +30,17 @@ trait FOPRenderer {
 
         //TODO find a more efficient way to convert an Elem to a Source
 	implicit def toStreamSource(x: Elem): Source = {
+		val bytes = x.toString.getBytes
 		if (LOG.isDebugEnabled) {
 			val file = File.createTempFile("sfop", ".fo.xml")
 			val out = new FileOutputStream(file)
-			out.write(x.toString().getBytes)
+			out.write(bytes)
 			out.close()
 			LOG.debug("SFOP output: " + file.getAbsolutePath)
 		}
-		new StreamSource(new StringReader(x.toString()))
+		val header = new ByteArrayInputStream("<?xml version='1.0' encoding='UTF-8'?>".getBytes)
+		val stream = new ByteArrayInputStream(bytes)
+		new StreamSource(new SequenceInputStream(header, stream))
 	}
 
 	/**
