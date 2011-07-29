@@ -3,3 +3,6 @@ build
 *.swp
 *.swo
 target
+*.iml
+*.iws
+*.ipr
