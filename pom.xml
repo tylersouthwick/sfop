@@ -10,13 +10,48 @@
 	<packaging>jar</packaging>
 	<name>Scala FOP DSL</name>
 	<description>
+		Scala FOP DSL Library.  Alternative to XML/XSL generation described on the site.
 	</description>
+	<url>http://northfuse.net/sfop</url>
 
 	<scm>
-		<connection>scm:git:git@github.com:tylersouthwick/ofx4j.git</connection>
-		<url>scm:git:git@github.com:tylersouthwick/ofx4j.git</url>
-		<developerConnection>scm:git:git@github.com:tylersouthwick/ofx4j.git</developerConnection>
+		<connection>scm:git:git@github.com:tylersouthwick/sfop.git</connection>
+		<url>scm:git:git@github.com:tylersouthwick/sfop.git</url>
+		<developerConnection>scm:git:git@github.com:tylersouthwick/sfop.git</developerConnection>
 	</scm>
+
+	<developers>
+		<developer>
+			<name>Tyler Southwick</name>
+			<email>tyler@northfuse.net</email>
+			<roles>
+				<role>Creator</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/tylersouthwick/sfop/issues</url>
+	</issueManagement>
+
+
+	<distributionManagement>
+		<site>
+			<id>site.website</id>
+			<name>Northfuse Site</name>
+			<url>scp://tyler@northfuse.net/data/sites/sfop</url>
+		</site>
+	</distributionManagement>
 
 	<dependencies>
 		<!-- scala -->
