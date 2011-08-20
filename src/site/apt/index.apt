@@ -1,0 +1,20 @@
+  -----
+  Home
+  -----
+  Tyler Southwick
+  -----
+  August 19, 2011
+  -----
+
+SFOP
+
+  FOP from the Apache foundation is a very nice tool for generating PDFs.
+  Their tutorial involves using XSL to generate the data.
+  If you have an app written in Java this means marshaling the Java POJOs to XML (hopefully using something like JAXB), applying an XSL style sheet, and then invoking the FOP processor.
+  Instead of using XSL to generate an FOP PDF document, use Scala.
+  There is no marshaling to XML and you can keep the static type inference instead of using the dynamic typing of XSL.
+
+  This idea came about as I was working on a project with around fifty XSL style sheets and we had to do a major refactoring.
+  Keeping it in XSL would have made the refactoring extremely difficult.
+  By first converting to Scala and then applying the refactoring, we could use the compiler to help catch broken things.
+  In the process, we also found large sections of dead code.
